@@ -1,0 +1,11 @@
+SET UP DATABASE TO XAMPP/WAMP PHPMYADMIN IMPORT THE farmers.sql
+
+ACTIVATE ENV USING 
+- "cd farmer system"
+- USING CMD TYPE = ".\env\Scripts\activate.bat"
+
+INSTALL THE REQUIREMENTS "pip install -r requirements.txt" IF NOT YET INSTALLED
+
+OPEN DATABASE USING XAMPP/WAMP
+
+RUN FLASK = "py main.py"

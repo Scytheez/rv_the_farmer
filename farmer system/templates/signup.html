@@ -11,7 +11,7 @@ Signup
 {% for category, message in messages %}
 
 <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
+    <p style="color: white;">{{message}}</p>
 
 
 </div>
@@ -22,21 +22,22 @@ Signup
   {% endwith %}
 <form class=" text-white py-3 px-3" action="/signup" method="post">
  <div class="form-group">
-    <label for="exampleInputPassword1">UserName</label>
-    <input type="text" class="form-control mb-2" name="username" id="username" required>
+    <label for="exampleInputPassword1">User Name</label>
+    <input type="text" class="form-control mb-4" name="username" id="username" required>
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control mb-2" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" required>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <label for="exampleInputEmail1">Phone Number</label>
+    <input type="number" class="form-control mb-4" id="exampleInputEmail1" pattern="/09[0-9]{9}/" name="number" aria-describedby="emailHelp" required>
+    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control mb-2" name="password" id="exampleInputPassword1" required>
+    <input type="password" class="form-control mb-1" name="password" id="exampleInputPassword1" required>
   </div>
 
 <br>
   <button type="submit" class="form-control bg-success text-white">Sign In</button>
+  <br>
    <p class="mb-2 pb-0">Already User?</p>
     
       <a href="/login" class="about-btn scrollto">Login</a>

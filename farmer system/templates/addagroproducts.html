@@ -37,8 +37,8 @@ Add AgroProducts
 <br>
 <div class="form-group">
 
-<label for="username">Farmer Email</label>
-<input type="email" class="form-control" name="email" value="{{current_user.email}}" id="{{current_user.email}}" required>
+<label for="number">Phone Number</label>
+<input type="number" class="form-control" pattern="/09[0-9]{9}/" name="number" value="{{current_user.number}}" id="{{current_user.number}}" required>
 </div>
 <br>
 <div class="form-group">

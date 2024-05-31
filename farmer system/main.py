@@ -36,7 +36,7 @@ class Farming(db.Model):
 
 class Addagroproducts(db.Model):
     username=db.Column(db.String(50))
-    email=db.Column(db.String(50))
+    number=db.Column(db.String(50))
     pid=db.Column(db.Integer,primary_key=True)
     productname=db.Column(db.String(100))
     productdesc=db.Column(db.String(300))
@@ -54,13 +54,13 @@ class Trig(db.Model):
 class User(UserMixin,db.Model):
     id=db.Column(db.Integer,primary_key=True)
     username=db.Column(db.String(50))
-    email=db.Column(db.String(50),unique=True)
+    number=db.Column(db.String(50),unique=True)
     password=db.Column(db.String(1000))
 
 class Register(db.Model):
     rid=db.Column(db.Integer,primary_key=True)
     farmername=db.Column(db.String(50))
-    adharnumber=db.Column(db.String(50))
+    #adharnumber=db.Column(db.String(50))
     age=db.Column(db.Integer)
     gender=db.Column(db.String(50))
     phonenumber=db.Column(db.String(50))
@@ -91,11 +91,11 @@ def agroproducts():
 def addagroproduct():
     if request.method=="POST":
         username=request.form.get('username')
-        email=request.form.get('email')
+        number=request.form.get('number')
         productname=request.form.get('productname')
         productdesc=request.form.get('productdesc')
         price=request.form.get('price')
-        products=Addagroproducts(username=username,email=email,productname=productname,productdesc=productdesc,price=price)
+        products=Addagroproducts(username=username,number=number,productname=productname,productdesc=productdesc,price=price)
         db.session.add(products)
         db.session.commit()
         flash("Product Added","info")
@@ -145,7 +145,7 @@ def edit(rid):
     # farming=db.engine.execute("SELECT * FROM `farming`") 
     if request.method=="POST":
         farmername=request.form.get('farmername')
-        adharnumber=request.form.get('adharnumber')
+        #adharnumber=request.form.get('adharnumber')
         age=request.form.get('age')
         gender=request.form.get('gender')
         phonenumber=request.form.get('phonenumber')
@@ -155,7 +155,7 @@ def edit(rid):
         post=Register.query.filter_by(rid=rid).first()
         print(post.farmername)
         post.farmername=farmername
-        post.adharnumber=adharnumber
+        #post.adharnumber=adharnumber
         post.age=age
         post.gender=gender
         post.phonenumber=phonenumber
@@ -173,19 +173,19 @@ def edit(rid):
 def signup():
     if request.method == "POST":
         username=request.form.get('username')
-        email=request.form.get('email')
+        number=request.form.get('number')
         password=request.form.get('password')
-        print(username,email,password)
-        user=User.query.filter_by(email=email).first()
+        print(username,number,password)
+        user=User.query.filter_by(number=number).first()
         if user:
-            flash("Email Already Exist","warning")
+            flash("Number Already Exist","warning")
             return render_template('/signup.html')
         # encpassword=generate_password_hash(password)
 
-        # new_user=db.engine.execute(f"INSERT INTO `user` (`username`,`email`,`password`) VALUES ('{username}','{email}','{encpassword}')")
+        # new_user=db.engine.execute(f"INSERT INTO `user` (`username`,`number`,`password`) VALUES ('{username}','{number}','{encpassword}')")
 
         # this is method 2 to save data in db
-        newuser=User(username=username,email=email,password=password)
+        newuser=User(username=username,number=number,password=password)
         db.session.add(newuser)
         db.session.commit()
         flash("Signup Succes Please Login","success")
@@ -198,9 +198,9 @@ def signup():
 @app.route('/login',methods=['POST','GET'])
 def login():
     if request.method == "POST":
-        email=request.form.get('email')
+        number=request.form.get('number')
         password=request.form.get('password')
-        user=User.query.filter_by(email=email).first()
+        user=User.query.filter_by(number=number).first()
 
         if user and user.password == password:
             login_user(user)
@@ -227,13 +227,13 @@ def register():
     farming=Farming.query.all()
     if request.method=="POST":
         farmername=request.form.get('farmername')
-        adharnumber=request.form.get('adharnumber')
+        #adharnumber=request.form.get('adharnumber')
         age=request.form.get('age')
         gender=request.form.get('gender')
         phonenumber=request.form.get('phonenumber')
         address=request.form.get('address')
         farmingtype=request.form.get('farmingtype')     
-        query=Register(farmername=farmername,adharnumber=adharnumber,age=age,gender=gender,phonenumber=phonenumber,address=address,farming=farmingtype)
+        query=Register(farmername=farmername,age=age,gender=gender,phonenumber=phonenumber,address=address,farming=farmingtype) #,adharnumber=adharnumber
         db.session.add(query)
         db.session.commit()
         # query=db.engine.execute(f"INSERT INTO `register` (`farmername`,`adharnumber`,`age`,`gender`,`phonenumber`,`address`,`farming`) VALUES ('{farmername}','{adharnumber}','{age}','{gender}','{phonenumber}','{address}','{farmingtype}')")
