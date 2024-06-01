@@ -1,4 +1,4 @@
-SET UP DATABASE TO XAMPP/WAMP PHPMYADMIN IMPORT THE farmers.sql
+SET UP DATABASE TO XAMPP/WAMP PHPMYADMIN IMPORT THE farmers.sql from "updated database" folder
 
 ACTIVATE ENV USING 
 - "cd farmer system"
