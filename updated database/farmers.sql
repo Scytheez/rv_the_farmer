@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2024 at 04:38 PM
+-- Generation Time: Jun 01, 2024 at 04:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,10 +41,8 @@ CREATE TABLE `addagroproducts` (
 --
 
 INSERT INTO `addagroproducts` (`username`, `number`, `pid`, `productname`, `productdesc`, `price`) VALUES
-('test', '091736461273', 1, 'GIRIJA CAULIFLOWER', ' Tips for Growing Cauliflower. Well drained medium loam and or sandy loam soils are suitable.', 520),
-('test', '091957295512', 2, 'COTTON', 'Cotton is a soft, fluffy staple fiber that grows in a boll,around the seeds of the cotton ', 563),
-('arkpro', '098661748236', 3, 'silk', 'silk is best business developed from coocon for saries preparation and so on', 582),
-('user', '09210405584', 4, 'silk12', 'best', 999);
+('user', '09210405584', 4, 'silk12', 'best', 999),
+('1', '1', 6, 'coco rice', 'best quality', 1199);
 
 -- --------------------------------------------------------
 
@@ -80,6 +78,7 @@ CREATE TABLE `register` (
   `gender` varchar(50) NOT NULL,
   `phonenumber` varchar(12) NOT NULL,
   `address` varchar(50) NOT NULL,
+  `farmingtype` varchar(50) NOT NULL,
   `farming` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -87,9 +86,10 @@ CREATE TABLE `register` (
 -- Dumping data for table `register`
 --
 
-INSERT INTO `register` (`rid`, `farmername`, `adharnumber`, `age`, `gender`, `phonenumber`, `address`, `farming`) VALUES
-(9, 'farmer', NULL, 31, 'male', '09210405584', 'quezon c', 'silk'),
-(10, 'farmer2', NULL, 55, 'female', '09781275824', 'buhol', 'Seed Farming');
+INSERT INTO `register` (`rid`, `farmername`, `adharnumber`, `age`, `gender`, `phonenumber`, `address`, `farmingtype`, `farming`) VALUES
+(11, 'farmer3', NULL, 56, 'female', '0988173483', 'bicol', 'Seed Farming', 'rice'),
+(12, 'farmer1', NULL, 44, 'female', '09782326273', 'bohol', 'coccon', 'kahit ano'),
+(13, 'farmer2', NULL, 32, 'male', '0987347638', 'cebu', 'silk', 'blueberry');
 
 --
 -- Triggers `register`
@@ -150,7 +150,18 @@ INSERT INTO `trig` (`id`, `fid`, `action`, `timestamp`) VALUES
 (5, '8', 'FARMER DELETED', '2021-01-19 23:18:54'),
 (6, '9', 'Farmer Inserted', '2024-05-31 10:23:06'),
 (7, '9', 'FARMER UPDATED', '2024-05-31 19:57:58'),
-(8, '10', 'Farmer Inserted', '2024-05-31 20:02:25');
+(8, '10', 'Farmer Inserted', '2024-05-31 20:02:25'),
+(9, '11', 'Farmer Inserted', '2024-06-01 00:03:14'),
+(10, '9', 'FARMER DELETED', '2024-06-01 00:08:00'),
+(11, '10', 'FARMER DELETED', '2024-06-01 00:08:04'),
+(12, '12', 'Farmer Inserted', '2024-06-01 00:08:32'),
+(13, '13', 'Farmer Inserted', '2024-06-01 00:09:12'),
+(14, '14', 'Farmer Inserted', '2024-06-01 00:14:49'),
+(15, '15', 'Farmer Inserted', '2024-06-01 00:16:25'),
+(16, '11', 'FARMER UPDATED', '2024-06-01 00:28:22'),
+(17, '13', 'FARMER UPDATED', '2024-06-01 00:28:58'),
+(18, '15', 'FARMER DELETED', '2024-06-01 00:33:13'),
+(19, '14', 'FARMER DELETED', '2024-06-01 00:49:55');
 
 -- --------------------------------------------------------
 
@@ -171,9 +182,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `number`, `password`) VALUES
 (5, 'arkpro', 'arkpro@gmail.com', 'pbkdf2:sha256:150000$TfhDWqOr$d4cf40cc6cbfccbdcd1410f9e155ef2aa660620b0439a60c4d74085dbf007a4a'),
-(6, 'user', 'user@gmail.com', 'user'),
-(7, 'user', '0978', 'user'),
-(8, 'user', '09210405584', 'user');
+(9, 'user2', '09123456', 'user2'),
+(10, 'user3', '0981283463', 'user3'),
+(11, 'user', '09210405584', 'user'),
+(15, '1', '1', '1');
 
 --
 -- Indexes for dumped tables
@@ -223,7 +235,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `addagroproducts`
 --
 ALTER TABLE `addagroproducts`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `farming`
@@ -235,7 +247,7 @@ ALTER TABLE `farming`
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `test`
@@ -247,13 +259,13 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `trig`
 --
 ALTER TABLE `trig`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

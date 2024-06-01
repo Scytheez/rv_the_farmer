@@ -65,6 +65,7 @@ class Register(db.Model):
     gender=db.Column(db.String(50))
     phonenumber=db.Column(db.String(50))
     address=db.Column(db.String(50))
+    farmingtype=db.Column(db.String(50))
     farming=db.Column(db.String(50))
 
     
@@ -110,7 +111,7 @@ def triggers():
     query=Trig.query.all()
     return render_template('triggers.html',query=query)
 
-@app.route('/addfarming',methods=['POST','GET'])
+""" @app.route('/addfarming',methods=['POST','GET'])
 @login_required
 def addfarming():
     if request.method=="POST":
@@ -123,7 +124,7 @@ def addfarming():
         db.session.add(dep)
         db.session.commit()
         flash("Farming Addes","success")
-    return render_template('farming.html')
+    return render_template('farming.html') """
 
 
 
@@ -176,9 +177,9 @@ def signup():
         number=request.form.get('number')
         password=request.form.get('password')
         print(username,number,password)
-        user=User.query.filter_by(number=number).first()
+        user=User.query.filter_by(username=username).first()
         if user:
-            flash("Number Already Exist","warning")
+            flash("Username Already Exist","warning")
             return render_template('/signup.html')
         # encpassword=generate_password_hash(password)
 
@@ -198,13 +199,13 @@ def signup():
 @app.route('/login',methods=['POST','GET'])
 def login():
     if request.method == "POST":
-        number=request.form.get('number')
+        username=request.form.get('username')
         password=request.form.get('password')
-        user=User.query.filter_by(number=number).first()
+        user=User.query.filter_by(username=username).first()
 
         if user and user.password == password:
             login_user(user)
-            flash("Login Success","primary")
+            #flash("Login Success","primary")
             return redirect(url_for('index'))
         else:
             flash("invalid credentials","warning")
@@ -216,7 +217,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash("Logout SuccessFul","warning")
+    #flash("Logout SuccessFul","warning")
     return redirect(url_for('login'))
 
 
@@ -232,8 +233,9 @@ def register():
         gender=request.form.get('gender')
         phonenumber=request.form.get('phonenumber')
         address=request.form.get('address')
-        farmingtype=request.form.get('farmingtype')     
-        query=Register(farmername=farmername,age=age,gender=gender,phonenumber=phonenumber,address=address,farming=farmingtype) #,adharnumber=adharnumber
+        farmingtype=request.form.get('farmingtype')
+        farming=request.form.get('farming')
+        query=Register(farmername=farmername,age=age,gender=gender,phonenumber=phonenumber,address=address,farmingtype=farmingtype,farming=farming) #,adharnumber=adharnumber
         db.session.add(query)
         db.session.commit()
         # query=db.engine.execute(f"INSERT INTO `register` (`farmername`,`adharnumber`,`age`,`gender`,`phonenumber`,`address`,`farming`) VALUES ('{farmername}','{adharnumber}','{age}','{gender}','{phonenumber}','{address}','{farmingtype}')")

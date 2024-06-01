@@ -61,7 +61,7 @@ Register Farmers Details
 
 <div class="form-group">
 <label for="num">Phone Number</label>
-<input type="number" class="form-control" name="phonenumber" id="phonenumber" required>
+<input type="text" class="form-control" name="phonenumber" id="phonenumber" required>
 </div>
 <br>
 
@@ -71,16 +71,23 @@ Register Farmers Details
 </div>
 <br>
 
-<div class="form-group">                          
-<select class="form-control" id="farmingtype" name="farmingtype"  required>
-        <option selected>Select Farming</option>
-        {% for d in farming  %}
-        <option value="{{d.farmingtype}}">{{d.farmingtype}}</option>
-        {% endfor %}
-      </select>
- </div>
+<div class="form-group">                     
+  <label for="farmingtype">Farming</label>
+  <input type="text" class="form-control" name="farmingtype" id="farmingtype" required>
+  <!-- <select class="form-control" id="farmingtype" name="farmingtype"  required>
+    <option selected>Select Farming</option>
+    {% for d in farming  %}
+      <option value="{{d.farmingtype}}">{{d.farmingtype}}</option>
+    {% endfor %}
+  </select> -->
+</div>
 <br>
-  
+<div class="form-group">
+  <label for="dept">Enter Farming Type</label>
+  <input type="text" class="form-control" name="farming" id="farming">
+</div>
+<br>
+<br>
   <button type="submit" class="btn btn-success  btn-block">Save Records</button>
 </form>
 <br>
